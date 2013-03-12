@@ -15,7 +15,7 @@ Config {
       "-t","Mem: <usedratio>%"
     ] 10,
 
-    Run Date "%a %b %_d %l:%M" "date" 10,
+    Run Date "%a %b %_d %Y %H:%M:%S" "date" 10,
 
     Run Battery [
       "-t", "<acstatus>: <left>%", 
