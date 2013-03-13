@@ -101,7 +101,7 @@ xscreensaver -display :0 -no-splash &
 # certificates and the like.
 gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
 
-python /home/l/src/tools/google_appengine/goagent/local/proxy.py &
+python /home/deepin/src/google_appengine/goagent/local/proxy.py &
 
 # Now, finally, start xmonad
 exec xmonad
