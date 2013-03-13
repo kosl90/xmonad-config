@@ -29,6 +29,7 @@ myKeyBindings =
     , ((myModMask, xK_c), spawn "xmonad --recompile")
     , ((myModMask .|. shiftMask, xK_p), spawn "synapse")
     , ((myModMask, xK_p), spawn "~/.cabal/bin/yeganesh -x")
+    , ((myModMask, xK_f), spawn "thunar")
     ]
 
 
@@ -71,7 +72,7 @@ myWorkspaces = ["1:Main", chatWorkspace, "3:Coding", "4:Docs",
 myManage = composeAll [
             -- shift list
             className =? "XChat" --> doShift chatWorkspace
-           , className =? "skype" --> doShift chatWorkspace
+           , className =? "Skype" --> doShift chatWorkspace
            , className =? "Pywebqq" --> doShift chatWorkspace
            , className =? "VirtualBox" --> doShift vmWorkspace
 
