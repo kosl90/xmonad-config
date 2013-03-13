@@ -1,5 +1,5 @@
 Config { 
-  font = "xft:WenQuanYi Micro Hei Mono:pixelsize=14",
+  font = "xft:WenQuanYi Micro Hei Mono:pixelsize=16",
   bgColor = "black",
   fgColor = "grey",
 
