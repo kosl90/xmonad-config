@@ -7,5 +7,5 @@ help:
 
 install:
 	echo "install start..."
-	apt-get install xmonad xmobar scrot ttf-wqy-microhei xloadimage
+	apt-get install xmonad xmobar scrot ttf-wqy-microhei xloadimage thunar
 	echo "done"

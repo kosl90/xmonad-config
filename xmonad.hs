@@ -29,6 +29,7 @@ myKeyBindings =
     , ((myModMask, xK_c), spawn "xmonad --recompile")
     , ((myModMask .|. shiftMask, xK_p), spawn "synapse")
     , ((myModMask, xK_p), spawn "~/.cabal/bin/yeganesh -x")
+    , ((myModMask, xK_f), spawn "thunar")
     ]
 
 
