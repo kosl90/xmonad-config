@@ -155,4 +155,5 @@ main = do
              , handleEventHook = myEventHook
              , startupHook = do
                  spawn "~/.xmonad/bin/start-xmonad"
+                 spawn "~/.xmonad/bin/startup-hook"
              } `additionalKeys` myKeyBindings
