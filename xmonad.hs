@@ -27,9 +27,12 @@ myKeyBindings =
     , ((myModMask, xK_a), sendMessage MirrorShrink)
     , ((myModMask, xK_z), sendMessage MirrorExpand)
     , ((myModMask, xK_c), spawn "xmonad --recompile")
-    , ((myModMask .|. shiftMask, xK_p), spawn "synapse")
-    , ((myModMask, xK_p), spawn "~/.cabal/bin/yeganesh -x")
+    , ((myModMask, xK_p), spawn "synapse")
+    -- , ((myModMask, xK_f), spawn "nautilus")
     , ((myModMask, xK_f), spawn "thunar")
+    , ((0, xF86XK_AudioMute), spawn "amixer -q set Master toggle && amixer -q set PCM on")
+    , ((0, xF86XK_AudioLowerVolume), spawn "amixer -q set Master 10%-")
+    , ((0, xF86XK_AudioRaiseVolume), spawn "amixer -q set Master 10%+")
     ]
 
 
