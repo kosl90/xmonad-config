@@ -75,17 +75,19 @@ myWorkspaces = ["1:Main", chatWorkspace, "3:Coding", "4:Docs",
 myManage = composeAll [
             -- shift list
             className =? "XChat" --> doShift chatWorkspace
-           , className =? "skype" --> doShift chatWorkspace
+           , className =? "Skype" --> doShift chatWorkspace
            , className =? "Pywebqq" --> doShift chatWorkspace
+           , className =? "Pywebqq.py" --> doShift chatWorkspace
            , className =? "VirtualBox" --> doShift vmWorkspace
 
            -- float list
            , isFullscreen --> (doF W.focusDown <+> doFullFloat)
+           , className =? "Skype" --> doFloat
 
            -- ignore list
-           , className =? "gimp" --> doIgnore
-           , resource =? "synapse" --> doIgnore
-           , resource =? "stalonetray" --> doIgnore
+           , className =? "Gimp-2.8" --> doIgnore
+           , className =? "Synapse" --> doIgnore
+           , className =? "Stalonetray" --> doIgnore
            ]
 
 -- add manageDocks to my managehook
