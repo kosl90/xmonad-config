@@ -78,7 +78,7 @@ myManage = composeAll [
 
            -- float list
            , isFullscreen --> (doF W.focusDown <+> doFullFloat)
-           , resource =? "synapse" --> doFloat
+           , resource =? "skype" --> doFloat
 
            -- ignore list
            , className =? "gimp" --> doIgnore
