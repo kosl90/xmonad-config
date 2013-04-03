@@ -87,7 +87,7 @@ myManage = composeAll [
            -- ignore list
            , className =? "Gimp-2.8" --> doIgnore
            , className =? "Synapse" --> doIgnore
-           , className =? "Stalonetray" --> doIgnore
+           , resource =? "stalonetray" --> doIgnore
            ]
 
 -- add manageDocks to my managehook
