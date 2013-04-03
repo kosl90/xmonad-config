@@ -55,7 +55,7 @@ xrdb -merge .Xresources
 # To set your backgrounds, run nitrogren /path/to/images
 # nitrogen --restore &
 # nitrogen $HOME/Pictures/wallpaper &
-xsetbg $HOME/Pictures/wallpaper/neko-next.jpg &
+# xsetbg $HOME/Pictures/wallpaper/neko-next.jpg &
 
 
 #
@@ -101,8 +101,8 @@ xscreensaver -display :0 -no-splash &
 # certificates and the like.
 gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
 
-python /home/l/src/tools/google_appengine/goagent/local/proxy.py &
+# python /home/l/src/tools/google_appengine/goagent/local/proxy.py &
 
 # Now, finally, start xmonad
-exec xmonad
+# exec xmonad
 
