@@ -18,21 +18,6 @@ import System.IO
 import XMonad.Hooks.UrgencyHook
 
 
--- keybindings, `((modkey, key), action)`
--- use `.|.` to combinate modify keys
--- if modkey is 0, it means we need't hold any key
--- use `xev` to find the name of every keyboard button
-myKeyBindings =
-    [((myModMask, xK_b), sendMessage ToggleStruts)
-    , ((myModMask, xK_a), sendMessage MirrorShrink)
-    , ((myModMask, xK_z), sendMessage MirrorExpand)
-    , ((myModMask, xK_c), spawn "xmonad --recompile")
-    , ((myModMask .|. shiftMask, xK_p), spawn "synapse")
-    , ((myModMask, xK_p), spawn "~/.cabal/bin/yeganesh -x")
-    , ((myModMask, xK_f), spawn "thunar")
-    ]
-
-
 -- basic stuff
 myModMask = mod4Mask  -- Win key or Super_L
 myTerminal = "terminator"
@@ -41,26 +26,35 @@ myNormalBorderColor = "#dddddd"
 myFocusedBorderColor = "#ff0000"
 myFocusFollowsMouse = False
 myEventHook = fullscreenEventHook  -- for some apps like chrome which has a problem with fullscreen
-marginBetweenWindows = 2  -- add marginBetweenWindows pixels space between windows
+marginBetweenWindows = 0  -- add marginBetweenWindows pixels space between windows
 
 myTitleColor = "#eeeeee"
 myTitleLength = 80
-myCurrentWSColor = "#e6744c"
-myCurrentWSLeft = "["
-myCurrentWSRight = "]"
-myVisibleWSColor = "#e6744c"
-myVisibleWSLeft = "["
-myVisibleWSRight = "]"
-myUrgentWSColor = "#e6744"
-myUrgentWSLeft = "{"
-myUrgentWSRight = "}"
+
+
+-- keybindings, `((modkey, key), action)`
+-- use `.|.` to combinate modify keys
+-- if modkey is 0, it means we need't hold any key
+-- use `xev` to find the name of every keyboard button
+myKeyBindings = [
+    ((myModMask, xK_f), sendMessage ToggleStruts)
+    , ((myModMask, xK_a), sendMessage MirrorShrink)
+    , ((myModMask, xK_z), sendMessage MirrorExpand)
+    , ((myModMask, xK_q), spawn "killall conky; xmonad --recompile && xmonad --restart")
+    , ((myModMask, xK_p), spawn "synapse")
+    , ((myModMask, xK_e), spawn "thunar")
+    , ((0, xF86XK_AudioMute), spawn "amixer -q set Master toggle && amixer -q set PCM on")
+    , ((0, xF86XK_AudioLowerVolume), spawn "amixer -q set Master 10%-")
+    , ((0, xF86XK_AudioRaiseVolume), spawn "amixer -q set Master 10%+")
+    , ((0, xK_Print), spawn "~/.xmonad/bin/screenshot")
+    , ((controlMask, xK_Print), spawn "~/.xmonad/bin/select-screenshot")
+    ]
 
 
 -- workspaces
-chatWorkspace = "2:Chat"
-vmWorkspace = "6:VM"
-myWorkspaces = ["1:Main", chatWorkspace, "3:Coding", "4:Docs",
-                "5:Media", vmWorkspace, "7:Undefined", "8:Undefined"]
+chatWorkspace = "2"
+vmWorkspace = "6"
+myWorkspaces = [show i | i <- [1..9]]
 
 
 -- you can continue to use the xmonad default by declaring the like so:
@@ -69,24 +63,18 @@ myWorkspaces = ["1:Main", chatWorkspace, "3:Coding", "4:Docs",
 
 -- manage hook
 -- to know the className of an app, you can run the command "xprop"
-myManage = composeAll [
-            -- shift list
-            className =? "XChat" --> doShift chatWorkspace
-           , className =? "Skype" --> doShift chatWorkspace
-           , className =? "Pywebqq" --> doShift chatWorkspace
-           , className =? "VirtualBox" --> doShift vmWorkspace
-
-           -- float list
-           , isFullscreen --> (doF W.focusDown <+> doFullFloat)
+myManage = composeAll $ [
+           className =? "VirtualBox" --> doShift vmWorkspace
            , resource =? "skype" --> doFloat
-           , className =? "DDELauncher" --> doFloat
-           , className =? "Launcher" --> doFloat
-
-           -- ignore list
-           , className =? "gimp" --> doIgnore
-           , resource =? "synapse" --> doIgnore
-           , resource =? "stalonetray" --> doIgnore
+           , isFullscreen --> (doF W.focusDown <+> doFullFloat)
            ]
+           ++ [className =? i --> doIgnore | i <- ignoreList]
+           ++ [className =? i --> doFloat | i <- floatList]
+           ++ [className =? i --> doShift chatWorkspace | i <- chatWorkspaceList]
+    where
+      chatWorkspaceList = ["XChat", "Skype", "Pywebqq", "Pywebqq.py"]
+      floatList = ["Skype", "Gpicview", "Launcher", "DDELauncher"]
+      ignoreList = ["Gimp-2.8", "Synpase", "Conky", "stalonetray"]
 
 -- add manageDocks to my managehook
 myManageHook = myManage <+> manageHook defaultConfig
@@ -106,43 +94,14 @@ myLayoutHook = avoidStruts $ smartBorders $ tiled ||| Mirror tiled ||| noBorders
 
 
 -- Loghook
--- myLogHook h = dynamicLogWithPP $ defaultPP
---               -- display current workspace as darkgrey on light grey (oppsite of
---               -- default colors)
---               {
---                 ppCurrent = dzenColor "#303030" "#909090" . pad
---                 -- display other workspaces which contain windows as a brighter grey
---               , ppHidden = dzenColor "#909090" "" . pad
---                 -- display other workspaces with no windows as a normal grey
---               , ppHiddenNoWindows = dzenColor "#606060" "" . pad
---                 -- display the current layout as a brighter grey
---               , ppLayout = dzenColor "#909090" "" . pad
---                 -- if a window on a hidden workspace needs my attention, color it so
---               , ppUrgent = dzenColor "#ff0000" "" . pad . dzenStrip
---                 -- shorten if it goes over 100 characters
---               , ppTitle = shorten 100
---                 -- no separator between workspaces
---               , ppWsSep = ""
---                 -- put a few spaces between each object
---               , ppSep = "  "
---                 -- output to the handle we were given as an argument
---               , ppOutput = hPutStrLn h
---               }
 myLogHook h = dynamicLogWithPP $ xmobarPP {
                 ppOutput = hPutStrLn h
               , ppTitle = xmobarColor myTitleColor "" . shorten myTitleLength
-              -- , ppCurrent = xmobarColor myCurrentWSColor "" . wrap myCurrentWSLeft myCurrentWSRight
-              -- , ppVisible = xmobarColor myVisibleWSColor "" . wrap myVisibleWSLeft myVisibleWSRight
-              , ppUrgent = xmobarColor myUrgentWSColor "" . wrap myUrgentWSLeft myUrgentWSRight
               , ppLayout = const ""  -- to disable the layout info on xmobar
               }
 
 
-myStatusBar = "xmobar ~/.xmonad/xmobarrc"
-
-main = do
-  xmproc <- spawnPipe myStatusBar
-  xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig {
+myConfig xmproc = defaultConfig {
                -- basic stuff
                terminal = myTerminal
              , modMask = myModMask
@@ -158,6 +117,11 @@ main = do
              , logHook = myLogHook xmproc
              , handleEventHook = myEventHook
              , startupHook = do
-                 spawn "~/.xmonad/bin/start-xmonad"
                  spawn "~/.xmonad/bin/startup-hook"
              } `additionalKeys` myKeyBindings
+
+myStatusBar = "xmobar ~/.xmonad/xmobarrc"
+
+main = do
+  xmproc <- spawnPipe myStatusBar
+  xmonad $ withUrgencyHook NoUrgencyHook $ myConfig xmproc
