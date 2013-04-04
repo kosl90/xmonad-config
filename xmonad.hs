@@ -67,13 +67,13 @@ myManage = composeAll $ [
            className =? "VirtualBox" --> doShift vmWorkspace
            , isFullscreen --> (doF W.focusDown <+> doFullFloat)
            ]
-           ++ [className =? i --> doShift chatWorkspace | i <- chatWorkspaceList]
-           ++ [className =? i --> doFloat | i <- floatList]
            ++ [className =? i --> doIgnore | i <- ignoreList]
+           ++ [className =? i --> doFloat | i <- floatList]
+           ++ [className =? i --> doShift chatWorkspace | i <- chatWorkspaceList]
     where
       chatWorkspaceList = ["XChat", "Skype", "Pywebqq", "Pywebqq.py"]
       floatList = ["Skype", "Gpicview"]
-      ignoreList = ["Gimp-2.8", "Synpase"]
+      ignoreList = ["Gimp-2.8", "Synpase", "Conky"]
 
 -- add manageDocks to my managehook
 myManageHook = myManage <+> manageHook defaultConfig
