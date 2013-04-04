@@ -40,7 +40,7 @@ myKeyBindings = [
     ((myModMask, xK_f), sendMessage ToggleStruts)
     , ((myModMask, xK_a), sendMessage MirrorShrink)
     , ((myModMask, xK_z), sendMessage MirrorExpand)
-    , ((myModMask, xK_q), spawn "killall dzen2; xmonad --recompile && xmonad --restart")
+    , ((myModMask, xK_q), spawn "killall conky; xmonad --recompile && xmonad --restart")
     , ((myModMask, xK_p), spawn "synapse")
     , ((myModMask, xK_e), spawn "thunar")
     , ((0, xF86XK_AudioMute), spawn "amixer -q set Master toggle && amixer -q set PCM on")
