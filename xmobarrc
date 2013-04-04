@@ -1,11 +1,11 @@
-Config { 
-  font = "xft:WenQuanYi Micro Hei Mono:pixelsize=16",
+Config {
+  font = "xft:WenQuanYi Micro Hei Mono:pixelsize=14",
   bgColor = "black",
   fgColor = "grey",
 
-  position = TopW L 92, 
+  position = TopW L 120,
 
-  commands = [ 
+  commands = [
     Run Cpu [
       "-H","50",
       "--high","red"
@@ -18,17 +18,17 @@ Config {
     Run Date "%a %b %_d %Y %H:%M:%S" "date" 10,
 
     Run Battery [
-      "-t", "<acstatus>: <left>%", 
-      "--", 
+      "-t", "<acstatus>: <left>%",
+      "--",
       "-c", "charge_full",
       "-O", "AC",
       "-o", "Bat",
       "-h", "green",
       "-l", "red"
     ] 10,
-    
+
     Run Com "~/.xmonad/bin/get-volume" [] "myvolume" 10,
-    
+
     Run StdinReader
    ],
 

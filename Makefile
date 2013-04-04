@@ -2,13 +2,14 @@
 all: help
 
 help:
-	@echo "make install"
-	@echo "make clean"
-	@echo "make [help]"
+	@echo "Usage:"
+	@echo "\tmake install"
+	@echo "\tmake clean"
+	@echo "\tmake [help]"
 
 install:
 	@echo "install start..."
-	apt-get install xmonad xmobar scrot ttf-wqy-microhei xloadimage thunar terminator stalonetray
+	sudo apt-get install xmonad xmobar scrot ttf-wqy-microhei xloadimage thunar terminator stalonetray
 	@echo "done"
 
 clean:

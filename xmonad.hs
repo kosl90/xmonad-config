@@ -23,13 +23,13 @@ import XMonad.Hooks.UrgencyHook
 -- if modkey is 0, it means we need't hold any key
 -- use `xev` to find the name of every keyboard button
 myKeyBindings =
-    [((myModMask, xK_b), sendMessage ToggleStruts)
+    [((myModMask, xK_f), sendMessage ToggleStruts)
     , ((myModMask, xK_a), sendMessage MirrorShrink)
     , ((myModMask, xK_z), sendMessage MirrorExpand)
-    , ((myModMask, xK_c), spawn "xmonad --recompile")
+    , ((myModMask, xK_q), spawn "killall stalonetray dzen2; xmonad --recompile && xmonad --restart")
     , ((myModMask, xK_p), spawn "synapse")
     -- , ((myModMask, xK_f), spawn "nautilus")
-    , ((myModMask, xK_f), spawn "thunar")
+    , ((myModMask, xK_e), spawn "thunar")
     , ((0, xF86XK_AudioMute), spawn "amixer -q set Master toggle && amixer -q set PCM on")
     , ((0, xF86XK_AudioLowerVolume), spawn "amixer -q set Master 10%-")
     , ((0, xF86XK_AudioRaiseVolume), spawn "amixer -q set Master 10%+")
@@ -44,7 +44,7 @@ myNormalBorderColor = "#dddddd"
 myFocusedBorderColor = "#ff0000"
 myFocusFollowsMouse = False
 myEventHook = fullscreenEventHook  -- for some apps like chrome which has a problem with fullscreen
-marginBetweenWindows = 2  -- add marginBetweenWindows pixels space between windows
+marginBetweenWindows = 0  -- add marginBetweenWindows pixels space between windows
 
 myTitleColor = "#eeeeee"
 myTitleLength = 80
@@ -141,6 +141,7 @@ myLogHook h = dynamicLogWithPP $ xmobarPP {
 
 
 myStatusBar = "xmobar ~/.xmonad/xmobarrc"
+-- myStatusBar = "dzen2 -p -xs 1 -ta l -e 'onstart=lower'"
 
 main = do
   xmproc <- spawnPipe myStatusBar
