@@ -74,7 +74,7 @@ myManage = composeAll $ [
     where
       chatWorkspaceList = ["XChat", "Skype", "Pywebqq", "Pywebqq.py"]
       floatList = ["Skype", "Gpicview", "Launcher", "DDELauncher"]
-      ignoreList = ["Gimp-2.8", "Synpase", "Conky", "stalonetray"]
+      ignoreList = ["Gimp-2.8", "Synapse", "Conky", "stalonetray"]
 
 -- add manageDocks to my managehook
 myManageHook = myManage <+> manageHook defaultConfig
