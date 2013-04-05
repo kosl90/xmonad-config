@@ -26,5 +26,5 @@ Config {
 
    alignSep = "}{",
 
-   template = "%StdinReader% }{ %battery% | %cpu% | %memory% | Vol: %myvolume%    <fc=#e6744c>%date%</fc>     "
+   template = "%StdinReader% }{ %cpu% | %memory% | Vol: %myvolume%    <fc=#e6744c>%date%</fc>     "
 }

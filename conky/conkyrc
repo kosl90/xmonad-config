@@ -18,7 +18,8 @@ temperature_unit fahrenheit
 # Window specifications #
 
 own_window yes
-own_window_type dock
+own_window_type override
+# own_window_type dock
 own_window_transparent yes
 own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
 
@@ -28,7 +29,7 @@ border_outer_margin 0
 minimum_size 200 250
 maximum_width 200
 
-alignment tr
+# alignment tr
 gap_x 1035
 gap_y 55
 
@@ -51,7 +52,6 @@ temperature_unit celsius
 default_color FFFFFF
 
 # Lua Load  #
-#lua_load ~/.lua/scripts/clock_rings.lua
 lua_load ~/.xmonad/conky/clock_rings.lua
 lua_draw_hook_pre clock_rings
 
@@ -59,7 +59,7 @@ TEXT
 ${voffset 8}${color FF6600}${font caviar dreams:size=16}${time %A}${font}${voffset -8}${alignr 50}${color FFFFFF}${font caviar dreams:size=38}${time %e}${font}
 ${color FFFFFF}${voffset -30}${color FFFFFF}${font caviar dreams:size=18}${time %b}${font}${voffset -3} ${color FFFFFF}${font caviar dreams:size=20}${time %Y}${font}${color FF6600}${hr}
 ${voffset 140}${font caviar dreams:size=10}${alignr}HOME${font}
-${font caviar dreams:size=12}${color FFFFFF}${alignr}${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ LQBK temperature temperature 30} °C${font}
+${font caviar dreams:size=12}${color FFFFFF}${alignr}${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ ZHHH temperature temperature 30} °C${font}
 ${image ~/.xmonad/conky/new-ubuntu-logo.png -p 64,125 -s 70x20}
 
 ${color FFFFFF}${goto 25}${voffset 35}${cpu cpu0}%
