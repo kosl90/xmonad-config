@@ -6,4 +6,4 @@ my xmonad config
 TODO
 ====
 
-improve it
+[TODO](https://github.com/kosl90/xmonad-config/blob/master/TODO)
