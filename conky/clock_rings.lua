@@ -171,8 +171,8 @@ settings_table = {
         end_angle=180
     },
         {
-        name='downspeedf',
-        arg='eth0',
+        name='battery_percent',
+        arg='C1E9',
         max=100,
         bg_colour=0xffffff,
         bg_alpha=0.2,
@@ -180,20 +180,6 @@ settings_table = {
         fg_alpha=0.8,
         x=150, y=500,
         radius=25,
-        thickness=4,
-        start_angle=-90,
-        end_angle=180
-    },
-        {
-        name='upspeedf',
-        arg='eth0',
-        max=100,
-        bg_colour=0xffffff,
-        bg_alpha=0.2,
-        fg_colour=0xff6600,
-        fg_alpha=0.8,
-        x=150, y=500,
-        radius=20,
         thickness=4,
         start_angle=-90,
         end_angle=180
