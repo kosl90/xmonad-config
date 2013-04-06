@@ -29,6 +29,15 @@ myEventHook = fullscreenEventHook  -- for some apps like chrome which has a prob
 marginBetweenWindows = 0  -- add marginBetweenWindows pixels space between windows
 
 myTitleColor = "#eeeeee"
+myCurrentWSColor = "#ff6600"
+myVisibleWSColor = "#c185a7" -- color of inactive workspace
+myUrgentWSColor = "#cc0000" -- color of workspace with 'urgent' window
+myCurrentWSLeft = "[" -- wrap active workspace with these
+myCurrentWSRight = "]"
+myVisibleWSLeft = "(" -- wrap inactive workspace with these
+myVisibleWSRight = ")"
+myUrgentWSLeft = "{" -- wrap urgent workspace with these
+myUrgentWSRight = "}"
 myTitleLength = 80
 
 
@@ -97,6 +106,12 @@ myLayoutHook = avoidStruts $ smartBorders $ tiled ||| Mirror tiled ||| noBorders
 myLogHook h = dynamicLogWithPP $ xmobarPP {
                 ppOutput = hPutStrLn h
               , ppTitle = xmobarColor myTitleColor "" . shorten myTitleLength
+              , ppCurrent = xmobarColor myCurrentWSColor ""
+                            . wrap myCurrentWSLeft myCurrentWSRight
+              , ppVisible = xmobarColor myVisibleWSColor ""
+                            . wrap myVisibleWSLeft myVisibleWSRight
+              , ppUrgent = xmobarColor myUrgentWSColor ""
+                           . wrap myUrgentWSLeft myUrgentWSRight
               , ppLayout = const ""  -- to disable the layout info on xmobar
               }
 
