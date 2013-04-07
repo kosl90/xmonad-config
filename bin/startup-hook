@@ -115,7 +115,7 @@ xrdb -merge .Xresources
 # To set your backgrounds, run nitrogren /path/to/images
 # nitrogen --restore &
 # nitrogen $HOME/Pictures/wallpaper &
-xsetbg $HOME/Pictures/wallpaper/galaxy_1280x800.jpg &
+xsetbg $HOME/Pictures/wallpaper/Lighthouse.jpg &
 
 
 #
@@ -166,5 +166,3 @@ conky -c ~/.xmonad/conky/conkyrc &
 
 # Now, finally, start xmonad
 # exec xmonad
-
->>>>>>> master
