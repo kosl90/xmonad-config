@@ -2,7 +2,29 @@
 
 MAKEFILE=$HOME/.xmonad/bin/music-control
 
+if [ "$1" == "toggle" ]
+then
+    if pgrep mpd &> /dev/null
+    then
+        ncmpcpp toggle
+    else
+        mpd &> /dev/null
+    fi
+    exit 0
+elif [ "$1" == "" ]
+then
+    if ! pgrep mpd &> /dev/null
+    then
+        mpd &> /dev/null
+    else
+        ncmpcpp toggle
+    fi
+    exit 0
+fi
+
 if ! make -f $MAKEFILE $1 2> /dev/null
 then
     make -f $MAKEFILE help
 fi
+
+exit 0

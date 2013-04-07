@@ -1,16 +1,13 @@
+.PHONY: help gui stop play
+
 play:
-	@mpd &> /dev/null
-
-start:
-	@mpd && ncmpcpp
-
-all: help gui start stop play
+	@ncmpcpp play
 
 gui:
-	@ncmpcpp
+	@mpd; ncmpcpp
 
 stop:
-	@mpd --kill
+	@ncmpcpp stop
 
 help:
 	@echo "Usage:"

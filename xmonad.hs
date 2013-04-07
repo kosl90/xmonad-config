@@ -57,6 +57,11 @@ myKeyBindings = [
     , ((0, xF86XK_AudioRaiseVolume), spawn "amixer -q set Master 10%+")
     , ((0, xK_Print), spawn "~/.xmonad/bin/screenshot")
     , ((controlMask, xK_Print), spawn "~/.xmonad/bin/select-screenshot")
+    , ((myModMask .|. shiftMask, xK_F4), spawn "sudo poweroff")
+    , ((myModMask, xK_m), spawn "~/.xmonad/bin/music toggle")
+    , ((myModMask, xK_g), spawn "terminator -x ~/.xmonad/bin/music gui")
+    , ((myModMask .|. shiftMask, xK_n), spawn "ncmpcpp next")
+    , ((myModMask .|. shiftMask, xK_p), spawn "ncmpcpp prev")
     ]
 
 
