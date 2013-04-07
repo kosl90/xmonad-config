@@ -13,6 +13,5 @@ help:
 	@echo "Usage:"
 	@echo "\tmusic\t\tstart music player"
 	@echo "\tmusic gui\tstart gui"
-	@echo "\tmusic start\tstart music player and gui"
 	@echo "\tmusic stop\tkill music player"
 	@echo "\tmusic help\tdisplay this help message"

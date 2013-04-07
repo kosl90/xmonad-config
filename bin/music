@@ -4,12 +4,12 @@ MAKEFILE=$HOME/.xmonad/bin/music-control
 
 if [ "$1" == "toggle" ]
 then
-    if pgrep mpd &> /dev/null
+    if ! pgrep mpd &> /dev/null
     then
-        ncmpcpp toggle
-    else
         mpd &> /dev/null
     fi
+
+    ncmpcpp toggle
     exit 0
 elif [ "$1" == "" ]
 then
