@@ -1,6 +1,8 @@
 #!/bin/bash
 
-if ! make $1 2> /dev/null
+MAKEFILE=$HOME/.xmonad/bin/Makefile
+
+if ! make -f $MAKEFILE $1 2> /dev/null
 then
-    make help
+    make -f $MAKEFILE help
 fi

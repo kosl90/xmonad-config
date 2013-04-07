@@ -4,7 +4,7 @@ play:
 start:
 	@mpd && ncmpcpp
 
-all: help gui stop play
+all: help gui start stop play
 
 gui:
 	@ncmpcpp
