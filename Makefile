@@ -9,7 +9,7 @@ help:
 
 install:
 	@echo "install start..."
-	sudo apt-get install xmonad xmobar scrot ttf-wqy-microhei xloadimage thunar terminator stalonetray conky-all
+	sudo apt-get install xmonad xmobar scrot ttf-wqy-microhei xloadimage thunar terminator stalonetray conky-all mpd mpc ncmpcpp
 	@echo "done"
 
 clean:

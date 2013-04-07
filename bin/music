@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if ! make $1 2> /dev/null
+then
+    make help
+fi
