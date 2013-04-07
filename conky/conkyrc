@@ -77,8 +77,8 @@ ${color FF6600}${goto 125}Bat
 
 
 ${color FFFFFF}${font caviar dreams:size=8}Uptime: ${uptime_short}
-${color FFFFFF}${font caviar dreams:size=8}Processes: ${processes}
-${color FFFFFF}${font caviar dreams:size=8}Running: ${running_processes}
+# ${color FFFFFF}${font caviar dreams:size=8}Processes: ${processes}
+# ${color FFFFFF}${font caviar dreams:size=8}Running: ${running_processes}
 
 
 ${color FF6600}${font caviar dreams:size=8}${alignr}${nodename}

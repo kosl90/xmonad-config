@@ -115,7 +115,7 @@ xrdb -merge .Xresources
 # To set your backgrounds, run nitrogren /path/to/images
 # nitrogen --restore &
 # nitrogen $HOME/Pictures/wallpaper &
-xsetbg $HOME/Pictures/wallpaper/Lighthouse.jpg &
+xsetbg -zoom 67 $HOME/Pictures/wallpaper/2012.7.29_1920x1200.jpg &
 
 
 #
