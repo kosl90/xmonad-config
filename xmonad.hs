@@ -51,7 +51,7 @@ myKeyBindings = [
     , ((myModMask, xK_z), sendMessage MirrorExpand)
     , ((myModMask, xK_q), spawn "killall conky; xmonad --recompile && xmonad --restart")
     , ((myModMask, xK_p), spawn "synapse")
-    , ((myModMask, xK_e), spawn "thunar")
+    , ((myModMask, xK_e), spawn "marlin")
     , ((0, xF86XK_AudioMute), spawn "amixer -q set Master toggle && amixer -q set PCM on")
     , ((0, xF86XK_AudioLowerVolume), spawn "amixer -q set Master 10%-")
     , ((0, xF86XK_AudioRaiseVolume), spawn "amixer -q set Master 10%+")
