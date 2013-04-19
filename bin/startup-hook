@@ -22,9 +22,9 @@
 # fi
 
 # Network manager, so we don't have to configure wifi at the command line.
-if [ -z "$(pgrep nm-applet)" ] ; then
-    nm-applet --sm-disable &
-fi
+# if [ -z "$(pgrep nm-applet)" ] ; then
+#     nm-applet --sm-disable &
+# fi
 
 # Applet for managing print jobs from the tray.
 # if [ -z "$(pgrep system-config-printer-applet)" ] ; then
@@ -115,7 +115,7 @@ xrdb -merge .Xresources
 # To set your backgrounds, run nitrogren /path/to/images
 # nitrogen --restore &
 # nitrogen $HOME/Pictures/wallpaper &
-xsetbg -clip 550,250,1280,800 $HOME/Pictures/wallpaper/2012.9.2_1920x1200.jpg &
+xsetbg -clip 240,250,1280,800 $HOME/.xmonad/imgs/bg.jpg &
 
 
 #
