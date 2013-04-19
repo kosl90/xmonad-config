@@ -115,7 +115,7 @@ xrdb -merge .Xresources
 # To set your backgrounds, run nitrogren /path/to/images
 # nitrogen --restore &
 # nitrogen $HOME/Pictures/wallpaper &
-xsetbg -clip 240,250,1280,800 $HOME/.xmonad/imgs/bg.jpg &
+xsetbg -clip 240,200,1280,800 $HOME/.xmonad/imgs/bg.jpg &
 
 
 #
