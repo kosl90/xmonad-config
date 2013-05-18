@@ -96,8 +96,7 @@ myManageHook = myManage <+> manageHook defaultConfig
 
 -- layout hook
 -- if you want start a window with xmobar shown, add avoidStruts like this:
--- myLayoutHook = avoidStruts $ smartBorders $ tiled ||| Mirror tiled ||| Full
-myLayoutHook = smartBorders $ tiled ||| Mirror tiled ||| Full
+myLayoutHook = avoidStruts $ smartBorders $ tiled ||| Mirror tiled ||| Full
     where
       -- add some space between windows
       tiled = spacing marginBetweenWindows $ ResizableTall nmaster delta ratio []
