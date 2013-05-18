@@ -20,7 +20,8 @@ import XMonad.Hooks.UrgencyHook
 
 -- basic stuff
 myModMask = mod4Mask  -- Win key or Super_L
-myTerminal = "terminator"
+myTerminal = "gnome-terminal"
+--myTerminal = "terminator"
 myBorderWidth = 2
 myNormalBorderColor = "#dddddd"
 myFocusedBorderColor = "#ff0000"
@@ -86,15 +87,17 @@ myManage = composeAll $ [
            ++ [className =? i --> doShift chatWorkspace | i <- chatWorkspaceList]
     where
       chatWorkspaceList = ["XChat", "Skype", "Pywebqq", "Pywebqq.py"]
-      floatList = ["Skype", "Gpicview", "Launcher", "DDELauncher"]
-      ignoreList = ["Gimp-2.8", "Synapse", "Conky", "stalonetray"]
+      floatList = ["Gimp-2.8", "Skype", "Gpicview", "Launcher", "DDELauncher", "OCR"]
+      ignoreList = ["Synapse", "Conky", "stalonetray"]
 
 -- add manageDocks to my managehook
 myManageHook = myManage <+> manageHook defaultConfig
 
 
 -- layout hook
-myLayoutHook = avoidStruts $ smartBorders $ tiled ||| Mirror tiled ||| noBorders Full
+-- if you want start a window with xmobar shown, add avoidStruts like this:
+-- myLayoutHook = avoidStruts $ smartBorders $ tiled ||| Mirror tiled ||| Full
+myLayoutHook = smartBorders $ tiled ||| Mirror tiled ||| Full
     where
       -- add some space between windows
       tiled = spacing marginBetweenWindows $ ResizableTall nmaster delta ratio []
