@@ -52,6 +52,7 @@ myKeyBindings = [
     , ((myModMask, xK_z), sendMessage MirrorExpand)
     , ((myModMask, xK_q), spawn "killall conky; xmonad --recompile && xmonad --restart")
     , ((myModMask, xK_p), spawn "synapse")
+    , ((myModMask .|. shiftMask, xK_p), spawn "dmenu_run")
     , ((myModMask, xK_e), spawn "marlin")
     , ((0, xF86XK_AudioMute), spawn "amixer -q set Master toggle && amixer -q set PCM on")
     , ((0, xF86XK_AudioLowerVolume), spawn "amixer -q set Master 10%-")
@@ -60,8 +61,8 @@ myKeyBindings = [
     , ((controlMask, xK_Print), spawn "~/.xmonad/bin/select-screenshot")
     , ((myModMask, xK_m), spawn "~/.xmonad/bin/music toggle")
     , ((myModMask, xK_g), spawn "terminator -x ~/.xmonad/bin/music gui")
-    , ((myModMask .|. shiftMask, xK_n), spawn "ncmpcpp next")
-    , ((myModMask .|. shiftMask, xK_p), spawn "ncmpcpp prev")
+    , ((myModMask .|. controlMask, xK_n), spawn "ncmpcpp next")
+    , ((myModMask .|. controlMask, xK_p), spawn "ncmpcpp prev")
     ]
 
 
@@ -96,6 +97,7 @@ myManageHook = myManage <+> manageHook defaultConfig
 
 -- layout hook
 -- if you want start a window with xmobar shown, add avoidStruts like this:
+-- myLayoutHook = avoidStrutsOn [] $ smartBorders $ tiled ||| Mirror tiled ||| Full
 myLayoutHook = avoidStruts $ smartBorders $ tiled ||| Mirror tiled ||| Full
     where
       -- add some space between windows
