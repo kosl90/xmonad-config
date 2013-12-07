@@ -17,6 +17,16 @@ Config {
 
     Run Date "%a %b %_d %Y %H:%M:%S" "date" 10,
 
+    Run BatteryP ["C1E9"] ["-t", "<acstatus>",
+    "-L", "-12", "-H", "80",
+    "-l", "red", "-h", "green",
+    "--",
+    "-O", "Charging",
+    "-o", "<left>%",
+    "-i", "Full"
+    ] 10,
+
+    -- Run Volume "default" "Master" [] 10,
     Run Com "~/.xmonad/bin/get-volume" [] "myvolume" 10,
 
     Run StdinReader
@@ -26,5 +36,5 @@ Config {
 
    alignSep = "}{",
 
-   template = "%StdinReader% }{ %cpu% | %memory% | Vol: %myvolume%    <fc=#ff6600>%date%</fc>     "
+   template = "%StdinReader% }{ %cpu% | %memory% | Vol: %myvolume% | Bat: %battery%    <fc=#ff6600>%date%</fc>     "
 }

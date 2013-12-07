@@ -151,7 +151,8 @@ myConfig xmproc = defaultConfig {
                  spawn "~/.xmonad/bin/startup-hook"
              } `additionalKeys` myKeyBindings
 
-myStatusBar = "xmobar ~/.xmonad/xmobarrc"
+--myStatusBar = "xmobar ~/.xmonad/xmobarrc"
+myStatusBar = "~/.cabal/bin/xmobar ~/.xmonad/xmobarrc"
 
 main = do
   xmproc <- spawnPipe myStatusBar
