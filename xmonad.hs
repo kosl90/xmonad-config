@@ -2,7 +2,7 @@ import XMonad
 import Graphics.X11.ExtraTypes.XF86  -- for the names of laptop's function keys e.g. XF86MonBrightnessUp
 import XMonad.Layout.Spacing  -- add some space between windows
 import XMonad.Layout.ResizableTile
-import XMonad.Layout.NoBorders  -- for smart Borders
+import XMonad.Layout.NoBorders(smartBorders)
 --import XMonad.Layout.FullScreen
 import XMonad.Layout.LayoutHints
 import XMonad.Layout.SimpleFloat
@@ -10,24 +10,29 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.LayoutModifier
 import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig
-import XMonad.Hooks.EwmhDesktops  -- for fullscreenEventHook
+import XMonad.Hooks.EwmhDesktops(fullscreenEventHook)
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
 import XMonad.Util.Run
 import System.IO
 import XMonad.Hooks.UrgencyHook
+-- need xmonad-extras package, installing it from cabal
+import XMonad.Actions.Volume(toggleMute, lowerVolume, raiseVolume)
 
+
+-- app settings
+terminals = ["terminator", "gnome-terminal"]
+myTerminal = terminals !! 0
+myFileManager = "marlin"
 
 -- basic stuff
 myModMask = mod4Mask  -- Win key or Super_L
-myTerminal = "gnome-terminal"
--- myTerminal = "terminator"
-myBorderWidth = 2
+myBorderWidth = 1
+marginBetweenWindows = 2  -- add marginBetweenWindows pixels space between windows
 myNormalBorderColor = "#dddddd"
 myFocusedBorderColor = "#ff0000"
 myFocusFollowsMouse = False
 myEventHook = fullscreenEventHook  -- for some apps like chrome which has a problem with fullscreen
-marginBetweenWindows = 0  -- add marginBetweenWindows pixels space between windows
 
 myTitleColor = "#eeeeee"
 myCurrentWSColor = "#ff6600"
@@ -50,13 +55,16 @@ myKeyBindings = [
     ((myModMask, xK_f), sendMessage ToggleStruts)
     , ((myModMask, xK_a), sendMessage MirrorShrink)
     , ((myModMask, xK_z), sendMessage MirrorExpand)
-    , ((myModMask, xK_q), spawn "killall stalonetray;killall conky; xmonad --recompile && xmonad --restart")
+    , ((myModMask, xK_q), spawn "killall stalonetray;killall conky;xmonad --recompile && xmonad --restart")
     , ((myModMask, xK_p), spawn "synapse")
     , ((myModMask .|. shiftMask, xK_p), spawn "dmenu_run")
-    , ((myModMask, xK_e), spawn "marlin")
-    , ((0, xF86XK_AudioMute), spawn "amixer -q set Master toggle && amixer -q set PCM on")
-    , ((0, xF86XK_AudioLowerVolume), spawn "amixer -q set Master 10%-")
-    , ((0, xF86XK_AudioRaiseVolume), spawn "amixer -q set Master 10%+")
+    , ((myModMask, xK_e), spawn myFileManager)
+    -- , ((0, xF86XK_AudioMute), spawn "amixer -q set Master toggle && amixer -q set PCM on")
+    -- , ((0, xF86XK_AudioLowerVolume), spawn "amixer -q set Master 10%-")
+    -- , ((0, xF86XK_AudioRaiseVolume), spawn "amixer -q set Master 10%+")
+    , ((0, xF86XK_AudioMute), toggleMute >> return ())
+    , ((0, xF86XK_AudioLowerVolume), lowerVolume 3 >> return ())
+    , ((0, xF86XK_AudioRaiseVolume), raiseVolume 3 >> return ())
     , ((0, xK_Print), spawn "~/.xmonad/bin/screenshot")
     , ((controlMask, xK_Print), spawn "~/.xmonad/bin/select-screenshot")
     , ((myModMask, xK_m), spawn "~/.xmonad/bin/music toggle")
