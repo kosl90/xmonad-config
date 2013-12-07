@@ -80,8 +80,7 @@ xrdb -merge .Xresources
 # if you prefer not to use any transparency, but it is likely to cause
 # ugly black fringing with some programs such as synapse that expect
 # transparency support.
-# xcompmgr -n &
-# xcompmgr -t-5 -l-5 -r4.2 -o.55 -F &
+xcompmgr -o 0.55 -ncCfFS &
 
 
 #
@@ -115,7 +114,8 @@ xrdb -merge .Xresources
 # To set your backgrounds, run nitrogren /path/to/images
 # nitrogen --restore &
 # nitrogen $HOME/Pictures/wallpaper &
-xsetbg -clip 240,200,1280,800 $HOME/.xmonad/imgs/bg.jpg &
+# xsetbg -clip 240,200,1280,800 $HOME/.xmonad/imgs/bg.jpg &
+feh --bg-scale $HOME/.xmonad/imgs/bg.jpg &
 
 
 #

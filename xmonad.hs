@@ -21,7 +21,7 @@ import XMonad.Hooks.UrgencyHook
 -- basic stuff
 myModMask = mod4Mask  -- Win key or Super_L
 myTerminal = "gnome-terminal"
---myTerminal = "terminator"
+-- myTerminal = "terminator"
 myBorderWidth = 2
 myNormalBorderColor = "#dddddd"
 myFocusedBorderColor = "#ff0000"
@@ -50,7 +50,7 @@ myKeyBindings = [
     ((myModMask, xK_f), sendMessage ToggleStruts)
     , ((myModMask, xK_a), sendMessage MirrorShrink)
     , ((myModMask, xK_z), sendMessage MirrorExpand)
-    , ((myModMask, xK_q), spawn "killall conky; xmonad --recompile && xmonad --restart")
+    , ((myModMask, xK_q), spawn "killall stalonetray;killall conky; xmonad --recompile && xmonad --restart")
     , ((myModMask, xK_p), spawn "synapse")
     , ((myModMask .|. shiftMask, xK_p), spawn "dmenu_run")
     , ((myModMask, xK_e), spawn "marlin")
