@@ -4,3 +4,4 @@
     2. variety
 [ ] maybe change xmobar to dzen
 [ ] maybe change conky
+[ ] maybe read configuration from a file not always recompile it.
