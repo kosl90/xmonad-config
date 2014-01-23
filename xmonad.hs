@@ -28,7 +28,7 @@ myFileManager = "marlin"
 -- basic stuff
 myModMask = mod4Mask  -- Win key or Super_L
 myBorderWidth = 1
-marginBetweenWindows = 2  -- add marginBetweenWindows pixels space between windows
+marginBetweenWindows = 0  -- add marginBetweenWindows pixels space between windows
 myNormalBorderColor = "#dddddd"
 myFocusedBorderColor = "#ff0000"
 myFocusFollowsMouse = False
