@@ -23,12 +23,13 @@ import XMonad.Actions.Volume(toggleMute, lowerVolume, raiseVolume)
 -- app settings
 terminals = ["terminator", "gnome-terminal"]
 myTerminal = terminals !! 0
-myFileManager = "marlin"
+fileManagers = ["dolphin", "marlin", "thunar", "nautilus"]
+myFileManager = fileManagers !! 0
 
 -- basic stuff
 myModMask = mod4Mask  -- Win key or Super_L
 myBorderWidth = 1
-marginBetweenWindows = 2  -- add marginBetweenWindows pixels space between windows
+marginBetweenWindows = 0  -- add marginBetweenWindows pixels space between windows
 myNormalBorderColor = "#dddddd"
 myFocusedBorderColor = "#ff0000"
 myFocusFollowsMouse = False
@@ -96,7 +97,7 @@ myManage = composeAll $ [
            ++ [className =? i --> doShift chatWorkspace | i <- chatWorkspaceList]
     where
       chatWorkspaceList = ["XChat", "Skype", "Pywebqq", "Pywebqq.py"]
-      floatList = ["Gimp-2.8", "Skype", "Gpicview", "Launcher", "DDELauncher", "OCR"]
+      floatList = ["Gimp-2.8", "Skype", "Gpicview", "Launcher", "DDELauncher", "Tilda", "feh"]
       ignoreList = ["Synapse", "Conky", "stalonetray"]
 
 -- add manageDocks to my managehook
@@ -105,8 +106,8 @@ myManageHook = myManage <+> manageHook defaultConfig
 
 -- layout hook
 -- if you want start a window with xmobar shown, add avoidStruts like this:
--- myLayoutHook = avoidStrutsOn [] $ smartBorders $ tiled ||| Mirror tiled ||| Full
-myLayoutHook = avoidStruts $ smartBorders $ tiled ||| Mirror tiled ||| Full
+myLayoutHook = avoidStrutsOn [] $ smartBorders $ tiled ||| Mirror tiled ||| Full
+-- myLayoutHook = avoidStruts $ smartBorders $ tiled ||| Mirror tiled ||| Full
     where
       -- add some space between windows
       tiled = spacing marginBetweenWindows $ ResizableTall nmaster delta ratio []
@@ -151,8 +152,8 @@ myConfig xmproc = defaultConfig {
                  spawn "~/.xmonad/bin/startup-hook"
              } `additionalKeys` myKeyBindings
 
---myStatusBar = "xmobar ~/.xmonad/xmobarrc"
-myStatusBar = "~/.cabal/bin/xmobar ~/.xmonad/xmobarrc"
+myStatusBar = "xmobar ~/.xmonad/xmobarrc"
+-- myStatusBar = "~/.cabal/bin/xmobar ~/.xmonad/xmobarrc"
 
 main = do
   xmproc <- spawnPipe myStatusBar

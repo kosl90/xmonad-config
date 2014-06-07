@@ -142,20 +142,20 @@ settings_table = {
         start_angle=-90,
         end_angle=180
     },
-    --{
-    --    name='swapperc',
-    --    arg='',
-    --    max=100,
-    --    bg_colour=0xffffff,
-    --    bg_alpha=0.2,
-    --    fg_colour=0xFF6600,
-    --    fg_alpha=0.8,
-    --    x=100, y=400,
-    --    radius=25,
-    --    thickness=5,
-    --    start_angle=-90,
-    --    end_angle=180
-    --},
+    {
+       name='swapperc',
+       arg='',
+       max=100,
+       bg_colour=0xffffff,
+       bg_alpha=0.2,
+       fg_colour=0xFF6600,
+       fg_alpha=0.8,
+       x=100, y=400,
+       radius=25,
+       thickness=5,
+       start_angle=-90,
+       end_angle=180
+    },
     {
         name='fs_used_perc',
         arg='/',

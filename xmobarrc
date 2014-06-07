@@ -23,7 +23,7 @@ Config {
     "--",
     "-O", "Charging",
     "-o", "<left>%",
-    "-i", "Full"
+    "-c", "Full"
     ] 10,
 
     -- Run Volume "default" "Master" [] 10,
@@ -36,5 +36,5 @@ Config {
 
    alignSep = "}{",
 
-   template = "%StdinReader% }{ %cpu% | %memory% | Vol: %myvolume% | Bat: %battery%    <fc=#ff6600>%date%</fc>     "
+   template = "%StdinReader% }{ %cpu% | %memory% | Vol: %myvolume% | Bat: %battery%    <fc=#ff6600>%date%</fc> "
 }

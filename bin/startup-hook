@@ -80,7 +80,7 @@ xrdb -merge .Xresources
 # if you prefer not to use any transparency, but it is likely to cause
 # ugly black fringing with some programs such as synapse that expect
 # transparency support.
-xcompmgr -o 0.55 -ncCfFS &
+xcompmgr -o 0.55 -ncCfF &
 
 
 #
@@ -161,7 +161,7 @@ feh --bg-scale $HOME/.xmonad/imgs/bg.jpg &
 # certificates and the like.
 # gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
 
-python ~/src/tools/google_appengine/goagent/local/proxy.py &
+python ~/GAE/goagent/local/proxy.py &
 conky -c ~/.xmonad/conky/conkyrc &
 
 # Now, finally, start xmonad
