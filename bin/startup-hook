@@ -36,9 +36,9 @@
 #
 
 # Use synapse as our app launcher. (-s: don't display until requested)
-if [ -z "$(pgrep synapse)" ] ; then
-    synapse -s &
-fi
+# if [ -z "$(pgrep synapse)" ] ; then
+#     synapse -s &
+# fi
 
 # On login, we unlock the ssh keychain so we're not prompted for
 # passphrases later. We pipe /dev/null to ssh-add to make it realize
@@ -74,13 +74,13 @@ fi
 # export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
 # Load X resources (fixes some font issues)
-xrdb -merge .Xresources
+# xrdb -merge .Xresources
 
 # Start compositing to support transparency. You can omit this
 # if you prefer not to use any transparency, but it is likely to cause
 # ugly black fringing with some programs such as synapse that expect
 # transparency support.
-xcompmgr -o 0.55 -ncCfF &
+# xcompmgr -o 0.55 -ncCfF &
 
 
 #
@@ -115,7 +115,7 @@ xcompmgr -o 0.55 -ncCfF &
 # nitrogen --restore &
 # nitrogen $HOME/Pictures/wallpaper &
 # xsetbg -clip 240,200,1280,800 $HOME/.xmonad/imgs/bg.jpg &
-feh --bg-scale $HOME/.xmonad/imgs/bg.jpg &
+# feh --bg-scale $HOME/.xmonad/imgs/bg.jpg &
 
 
 #
@@ -161,8 +161,8 @@ feh --bg-scale $HOME/.xmonad/imgs/bg.jpg &
 # certificates and the like.
 # gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
 
-python ~/GAE/goagent/local/proxy.py &
-conky -c ~/.xmonad/conky/conkyrc &
+# python ~/GAE/goagent/local/proxy.py &
+# conky -c ~/.xmonad/conky/conkyrc &
 
 # Now, finally, start xmonad
 # exec xmonad

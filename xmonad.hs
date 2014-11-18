@@ -17,21 +17,21 @@ import XMonad.Util.Run
 import System.IO
 import XMonad.Hooks.UrgencyHook
 -- need xmonad-extras package, installing it from cabal
-import XMonad.Actions.Volume(toggleMute, lowerVolume, raiseVolume)
+-- import XMonad.Actions.Volume(toggleMute, lowerVolume, raiseVolume)
 
 
 -- app settings
-terminals = ["terminator", "gnome-terminal"]
+terminals = ["terminator", "lxterminal"]
 myTerminal = terminals !! 0
 fileManagers = ["dolphin", "marlin", "thunar", "nautilus"]
-myFileManager = fileManagers !! 0
+myFileManager = fileManagers !! 2
 
 -- basic stuff
 myModMask = mod4Mask  -- Win key or Super_L
-myBorderWidth = 1
-marginBetweenWindows = 0  -- add marginBetweenWindows pixels space between windows
+myBorderWidth = 2
+marginBetweenWindows = 3  -- add marginBetweenWindows pixels space between windows
 myNormalBorderColor = "#dddddd"
-myFocusedBorderColor = "#ff0000"
+myFocusedBorderColor = "#456def"--0000ff"
 myFocusFollowsMouse = False
 myEventHook = fullscreenEventHook  -- for some apps like chrome which has a problem with fullscreen
 
@@ -57,15 +57,15 @@ myKeyBindings = [
     , ((myModMask, xK_a), sendMessage MirrorShrink)
     , ((myModMask, xK_z), sendMessage MirrorExpand)
     , ((myModMask, xK_q), spawn "killall stalonetray;killall conky;xmonad --recompile && xmonad --restart")
-    , ((myModMask, xK_p), spawn "synapse")
+    , ((myModMask, xK_p), spawn "dmenu_run")
     , ((myModMask .|. shiftMask, xK_p), spawn "dmenu_run")
     , ((myModMask, xK_e), spawn myFileManager)
-    -- , ((0, xF86XK_AudioMute), spawn "amixer -q set Master toggle && amixer -q set PCM on")
-    -- , ((0, xF86XK_AudioLowerVolume), spawn "amixer -q set Master 10%-")
-    -- , ((0, xF86XK_AudioRaiseVolume), spawn "amixer -q set Master 10%+")
-    , ((0, xF86XK_AudioMute), toggleMute >> return ())
-    , ((0, xF86XK_AudioLowerVolume), lowerVolume 3 >> return ())
-    , ((0, xF86XK_AudioRaiseVolume), raiseVolume 3 >> return ())
+    , ((0, xF86XK_AudioMute), spawn "amixer -q set Master toggle && amixer -q set PCM on")
+    , ((0, xF86XK_AudioLowerVolume), spawn "amixer -q set Master 10%-")
+    , ((0, xF86XK_AudioRaiseVolume), spawn "amixer -q set Master 10%+")
+    -- , ((0, xF86XK_AudioMute), toggleMute >> return ())
+    -- , ((0, xF86XK_AudioLowerVolume), lowerVolume 3 >> return ())
+    -- , ((0, xF86XK_AudioRaiseVolume), raiseVolume 3 >> return ())
     , ((0, xK_Print), spawn "~/.xmonad/bin/screenshot")
     , ((controlMask, xK_Print), spawn "~/.xmonad/bin/select-screenshot")
     , ((myModMask, xK_m), spawn "~/.xmonad/bin/music toggle")
@@ -133,7 +133,7 @@ myLogHook h = dynamicLogWithPP $ xmobarPP {
               }
 
 
-myConfig xmproc = defaultConfig {
+myConfig = defaultConfig {
                -- basic stuff
                terminal = myTerminal
              , modMask = myModMask
@@ -146,15 +146,15 @@ myConfig xmproc = defaultConfig {
              -- hooks, layouts
              , layoutHook = myLayoutHook
              , manageHook = myManageHook
-             , logHook = myLogHook xmproc
+             -- , logHook = myLogHook xmproc
              , handleEventHook = myEventHook
              , startupHook = do
                  spawn "~/.xmonad/bin/startup-hook"
              } `additionalKeys` myKeyBindings
 
-myStatusBar = "xmobar ~/.xmonad/xmobarrc"
+-- myStatusBar = "xmobar ~/.xmonad/xmobarrc"
 -- myStatusBar = "~/.cabal/bin/xmobar ~/.xmonad/xmobarrc"
 
 main = do
-  xmproc <- spawnPipe myStatusBar
-  xmonad $ withUrgencyHook NoUrgencyHook $ myConfig xmproc
+  -- xmproc <- spawnPipe myStatusBar
+  xmonad $ withUrgencyHook NoUrgencyHook $ myConfig
