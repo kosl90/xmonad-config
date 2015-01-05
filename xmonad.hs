@@ -1,21 +1,27 @@
-import XMonad
+import System.IO
 import Graphics.X11.ExtraTypes.XF86  -- for the names of laptop's function keys e.g. XF86MonBrightnessUp
+
+import XMonad
+import qualified XMonad.StackSet as W
+
+import XMonad.Layout.LayoutHints
+import XMonad.Layout.LayoutModifier
 import XMonad.Layout.Spacing  -- add some space between windows
 import XMonad.Layout.ResizableTile
-import XMonad.Layout.NoBorders(smartBorders)
---import XMonad.Layout.FullScreen
-import XMonad.Layout.LayoutHints
+import XMonad.Layout.Fullscreen(fullscreenFull, fullscreenEventHook)
+import XMonad.Layout.NoBorders(noBorders)
 import XMonad.Layout.SimpleFloat
+import XMonad.Layout.AutoMaster
+
 import XMonad.Hooks.ManageHelpers
-import XMonad.Layout.LayoutModifier
-import qualified XMonad.StackSet as W
-import XMonad.Util.EZConfig
-import XMonad.Hooks.EwmhDesktops(fullscreenEventHook)
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
-import XMonad.Util.Run
-import System.IO
 import XMonad.Hooks.UrgencyHook
+import XMonad.Hooks.SetWMName(setWMName)
+
+import XMonad.Util.Run
+import XMonad.Util.EZConfig
+
 -- need xmonad-extras package, installing it from cabal
 -- import XMonad.Actions.Volume(toggleMute, lowerVolume, raiseVolume)
 
@@ -31,7 +37,7 @@ myModMask = mod4Mask  -- Win key or Super_L
 myBorderWidth = 2
 marginBetweenWindows = 3  -- add marginBetweenWindows pixels space between windows
 myNormalBorderColor = "#dddddd"
-myFocusedBorderColor = "#456def"--0000ff"
+myFocusedBorderColor = "#456def"
 myFocusFollowsMouse = False
 myEventHook = fullscreenEventHook  -- for some apps like chrome which has a problem with fullscreen
 
@@ -57,8 +63,7 @@ myKeyBindings = [
     , ((myModMask, xK_a), sendMessage MirrorShrink)
     , ((myModMask, xK_z), sendMessage MirrorExpand)
     , ((myModMask, xK_q), spawn "killall stalonetray;killall conky;xmonad --recompile && xmonad --restart")
-    , ((myModMask, xK_p), spawn "dmenu_run")
-    , ((myModMask .|. shiftMask, xK_p), spawn "dmenu_run")
+    , ((myModMask, xK_F2), spawn "dmenu_run")
     , ((myModMask, xK_e), spawn myFileManager)
     , ((0, xF86XK_AudioMute), spawn "amixer -q set Master toggle && amixer -q set PCM on")
     , ((0, xF86XK_AudioLowerVolume), spawn "amixer -q set Master 10%-")
@@ -81,34 +86,30 @@ vmWorkspace = "6"
 myWorkspaces = [show i | i <- [1..9]]
 
 
--- you can continue to use the xmonad default by declaring the like so:
--- myLayoutHook = layoutHook defalutConfig
--- myManageHook = manageHook defaultConfig
-
 -- manage hook
 -- to know the className of an app, you can run the command "xprop"
 myManage = composeAll $ [
-           className =? "VirtualBox" --> doShift vmWorkspace
+           isFullscreen --> (doF W.focusDown <+> doFullFloat)
+           , className =? "VirtualBox" --> doShift vmWorkspace
            , resource =? "skype" --> doFloat
-           , isFullscreen --> (doF W.focusDown <+> doFullFloat)
            ]
            ++ [className =? i --> doIgnore | i <- ignoreList]
            ++ [className =? i --> doFloat | i <- floatList]
            ++ [className =? i --> doShift chatWorkspace | i <- chatWorkspaceList]
     where
-      chatWorkspaceList = ["XChat", "Skype", "Pywebqq", "Pywebqq.py"]
+      chatWorkspaceList = ["XChat", "Skype"]
       floatList = ["Gimp-2.8", "Skype", "Gpicview", "Launcher", "DDELauncher", "Tilda", "feh"]
-      ignoreList = ["Synapse", "Conky", "stalonetray"]
+      ignoreList = ["Synapse", "Conky", "stalonetray", "Xfce4-notifyd"]
 
 -- add manageDocks to my managehook
-myManageHook = myManage <+> manageHook defaultConfig
+myManageHook = myManage <+> manageHook defaultConfig <+> manageDocks
 
 
 -- layout hook
 -- if you want start a window with xmobar shown, add avoidStruts like this:
-myLayoutHook = avoidStrutsOn [] $ smartBorders $ tiled ||| Mirror tiled ||| Full
--- myLayoutHook = avoidStruts $ smartBorders $ tiled ||| Mirror tiled ||| Full
+myLayoutHook = avoidStruts $ autoMaster nmaster (1/100) tiled ||| Mirror tiled ||| full
     where
+      full = noBorders (fullscreenFull Full)
       -- add some space between windows
       tiled = spacing marginBetweenWindows $ ResizableTall nmaster delta ratio []
       -- default number of the master pane
@@ -149,6 +150,7 @@ myConfig = defaultConfig {
              -- , logHook = myLogHook xmproc
              , handleEventHook = myEventHook
              , startupHook = do
+                 setWMName "LG3D"  -- fix window problem like java GUI.
                  spawn "~/.xmonad/bin/startup-hook"
              } `additionalKeys` myKeyBindings
 

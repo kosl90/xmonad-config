@@ -9,7 +9,7 @@ help:
 
 install:
 	@echo "install start..."
-	sudo apt-get install cabal-install libiw-dev scrot ttf-wqy-microhei feh stalonetray conky-all mpd mpc ncmpcpp
+	sudo apt-get install cabal-install libiw-dev scrot ttf-wqy-microhei feh stalonetray conky-all mpd mpc ncmpcpp xfce4-notifyd
 	cabal install xmonad xmonad-contrib xmonad-extras xmobar --flags='all_extensions'
 	@echo "done"
 
