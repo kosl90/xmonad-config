@@ -8,6 +8,7 @@ import XMonad.Layout.LayoutHints
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.Spacing  -- add some space between windows
 import XMonad.Layout.ResizableTile
+import XMonad.Layout.OneBig
 import XMonad.Layout.Fullscreen(fullscreenFull, fullscreenEventHook)
 import XMonad.Layout.NoBorders(noBorders)
 import XMonad.Layout.SimpleFloat
@@ -107,15 +108,16 @@ myManageHook = myManage <+> manageHook defaultConfig <+> manageDocks
 
 -- layout hook
 -- if you want start a window with xmobar shown, add avoidStruts like this:
-myLayoutHook = avoidStruts $ autoMaster nmaster (1/100) tiled ||| Mirror tiled ||| full
+myLayoutHook = avoidStruts $ tiled ||| Mirror tiled ||| full
     where
+      oneBig = OneBig (3/4) (3/4)
       full = noBorders (fullscreenFull Full)
       -- add some space between windows
-      tiled = spacing marginBetweenWindows $ ResizableTall nmaster delta ratio []
+      tiled = spacing marginBetweenWindows $ oneBig ||| ResizableTall nmaster delta ratio []
       -- default number of the master pane
       nmaster = 1
       -- default proportion of screen occupied by master pane
-      ratio = 1 / 2
+      ratio = 3 / 4
       -- percent of screen to increment by when resizing panes
       delta = 1 / 100
 
