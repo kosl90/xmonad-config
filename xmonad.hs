@@ -1,4 +1,5 @@
 import System.IO
+import System.Directory(getHomeDirectory)
 import Graphics.X11.ExtraTypes.XF86  -- for the names of laptop's function keys e.g. XF86MonBrightnessUp
 
 import XMonad
@@ -13,6 +14,7 @@ import XMonad.Layout.Fullscreen(fullscreenFull, fullscreenEventHook)
 import XMonad.Layout.NoBorders(noBorders)
 import XMonad.Layout.SimpleFloat
 import XMonad.Layout.AutoMaster
+import XMonad.Layout.WorkspaceDir(workspaceDir)
 
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.ManageDocks
@@ -108,7 +110,7 @@ myManageHook = myManage <+> manageHook defaultConfig <+> manageDocks
 
 -- layout hook
 -- if you want start a window with xmobar shown, add avoidStruts like this:
-myLayoutHook = avoidStruts $ tiled ||| Mirror tiled ||| full
+myLayoutHook workDir = avoidStruts $ workspaceDir workDir tiled ||| Mirror tiled ||| full
     where
       oneBig = OneBig (3/4) (3/4)
       full = noBorders (fullscreenFull Full)
@@ -136,7 +138,7 @@ myLogHook h = dynamicLogWithPP $ xmobarPP {
               }
 
 
-myConfig = defaultConfig {
+myConfig workDir = defaultConfig {
                -- basic stuff
                terminal = myTerminal
              , modMask = myModMask
@@ -147,7 +149,7 @@ myConfig = defaultConfig {
              , focusedBorderColor = myFocusedBorderColor
 
              -- hooks, layouts
-             , layoutHook = myLayoutHook
+             , layoutHook = myLayoutHook workDir
              , manageHook = myManageHook
              -- , logHook = myLogHook xmproc
              , handleEventHook = myEventHook
@@ -161,4 +163,5 @@ myConfig = defaultConfig {
 
 main = do
   -- xmproc <- spawnPipe myStatusBar
-  xmonad $ withUrgencyHook NoUrgencyHook $ myConfig
+  workDir <- getHomeDirectory
+  xmonad $ withUrgencyHook NoUrgencyHook $ myConfig workDir
