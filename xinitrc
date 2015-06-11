@@ -7,7 +7,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-eval $(cat ~/.fehbg)
+sh ~/.fehbg
 
 if [ -f ~/.Xresources ]; then
   xrdb -merge ~/.Xresources &
@@ -24,7 +24,7 @@ export XMODIFIERS="@im=fcitx"
 session=${1:-xmonad}
 
 case $session in
-	xmonad ) exec xmonad;;
-	awesome ) exec awesome;;
-	* ) exec $1;;
+    xmonad ) exec xmonad;;
+    awesome ) exec awesome;;
+    * ) exec $1;;
 esac
