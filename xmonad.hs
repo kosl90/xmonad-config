@@ -10,7 +10,7 @@ import XMonad.Layout.LayoutModifier
 import XMonad.Layout.Spacing  -- add some space between windows
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.OneBig
-import XMonad.Layout.Fullscreen(fullscreenFull, fullscreenEventHook)
+import XMonad.Layout.Fullscreen(fullscreenFull)--, fullscreenEventHook)
 import XMonad.Layout.NoBorders(noBorders)
 import XMonad.Layout.SimpleFloat
 import XMonad.Layout.AutoMaster
@@ -21,6 +21,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.UrgencyHook
 import XMonad.Hooks.SetWMName(setWMName)
+import XMonad.Hooks.EwmhDesktops
 
 import XMonad.Util.Run
 import XMonad.Util.EZConfig
