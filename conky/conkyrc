@@ -13,15 +13,16 @@ no_buffers yes
 text_buffer_size 2048
 #imlib_cache_size 0
 
-temperature_unit fahrenheit
-
 # Window specifications #
 
 own_window yes
-own_window_type override
+# own_window_type override
 # own_window_type dock
+# own_window_type panel
+own_window_type desktop
 own_window_transparent yes
-own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
+own_window_argb_visual yes
+own_window_hints undecorated,sticky,skip_taskbar,skip_pager,below
 
 border_inner_margin 0
 border_outer_margin 0
@@ -59,7 +60,7 @@ TEXT
 ${voffset 8}${color FF6600}${font caviar dreams:size=16}${time %A}${font}${voffset -8}${alignr 50}${color FFFFFF}${font caviar dreams:size=38}${time %e}${font}
 ${color FFFFFF}${voffset -30}${color FFFFFF}${font caviar dreams:size=18}${time %b}${font}${voffset -3} ${color FFFFFF}${font caviar dreams:size=20}${time %Y}${font}${color FF6600}${hr}
 ${voffset 140}${font caviar dreams:size=10}${alignr}HOME${font}
-${font caviar dreams:size=12}${color FFFFFF}${alignr}${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ ZHHH temperature temperature 30} °C${font}
+# ${font caviar dreams:size=12}${color FFFFFF}${alignr}${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ ZHHH temperature temperature 30} °C${font}
 ${image ~/.xmonad/conky/new-ubuntu-logo.png -p 64,125 -s 70x20}
 
 ${color FFFFFF}${goto 25}${voffset 35}${cpu cpu0}%
@@ -81,6 +82,5 @@ ${color FFFFFF}${font caviar dreams:size=8}Processes: ${processes}
 ${color FFFFFF}${font caviar dreams:size=8}Running: ${running_processes}
 
 
-${color FF6600}${font caviar dreams:size=8}${alignr}${nodename}
-${color FF6600}${font caviar dreams:size=8}${alignr}${pre_exec cat /etc/issue.net}  $machine
+${color FF6600}${font caviar dreams:size=8}${alignr}Ubuntu 18.04.2 LTS  $machine
 ${color FF6600}${font caviar dreams:size=8}${alignr}Kernel: ${kernel}
