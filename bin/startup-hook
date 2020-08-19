@@ -159,10 +159,10 @@
 # when using gnome applications which expect access to the keyring, such
 # as Empathy. This prevents prompts you may otherwise get for invalid
 # certificates and the like.
-# gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
+gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
 
 # python ~/GAE/goagent/local/proxy.py &
-# conky -c ~/.xmonad/conky/conkyrc &
+conky -d -c ~/.xmonad/conky/conkyrc
 
 # Now, finally, start xmonad
 # exec xmonad

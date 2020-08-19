@@ -99,7 +99,7 @@ myManage = composeAll $ [
            ]
            ++ [className =? i --> doIgnore | i <- ignoreList]
            ++ [className =? i --> doFloat | i <- floatList]
-           ++ [className =? i --> doShift chatWorkspace | i <- chatWorkspaceList]
+           -- ++ [className =? i --> doShift chatWorkspace | i <- chatWorkspaceList]
     where
       chatWorkspaceList = ["XChat", "Skype"]
       floatList = ["Gimp-2.8", "Skype", "Gpicview", "Launcher", "DDELauncher", "Tilda", "feh"]
